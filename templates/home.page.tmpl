@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="home.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"> 
     <title>Home page</title>
     <style>
         body {
@@ -16,6 +16,64 @@
             background-color: #183446;
             color: white;
         }
+        .bloc {
+            display: flex;
+            flex-direction: column;
+            align-items : center;
+            margin-top: 30px;
+            height: 100vh;
+        }
+
+/*Réinitilaisation de la liste déroulante*/
+select {
+  appearance: none;
+  outline: 0;
+  border: 0 !important;
+  background: #F9F9F9;
+  background-image: none;
+  box-shadow: none;
+  font-size: 1.2em;
+}
+
+/* Mise en forme de la div .select*/
+.select {
+  position: relative;
+  width: 350px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #CED4DA;
+}
+
+/* Mise en forme de la balise select*/
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding-left: 15px;
+  color: #555555;
+  cursor: pointer;
+}
+
+
+/* Mise en place de la flèche */
+.select::after {
+  content: '\276F';
+  position: absolute;
+  top: 20%;
+  right: 0;
+  padding: 0 15px;
+  background: white;
+  pointer-events: none;
+  transform: rotate(90deg);
+  font-size: 1.5em;
+  background: #F9F9F9;
+}
+
+
+.select:hover::after {
+  color: #FA6141;
+}
     </style>
 </head>
 <body>
@@ -24,5 +82,18 @@
         <label for="name">Écrivez votre texte ici : </label>
         <input type="text" id="name" name="name">
     </div>
+
+
+<div class="bloc">
+    <div class="select">
+      <select>
+        <option>Choisir une police</option>
+        <option value="1">Standard</option>
+        <option value="2">Thinkerboy</option>
+        <option value="3">Shadow</option>
+      </select>
+    </div>
+  </div>
+    
 </body>
 </html>
