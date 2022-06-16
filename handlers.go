@@ -14,8 +14,10 @@ type ResultAscii struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	//renderTemplate(w, "home")
-	file, err := os.Open("./assets/shadow.txt")
+	namePolice := r.FormValue("police")
+	//fmt.Println(namePolice)
+	file, err := os.Open("assets/" + namePolice + ".txt")
+
 	content, _ := ioutil.ReadAll(file)
 	if err != nil {
 		fmt.Println(err)
@@ -25,7 +27,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	var result []string
 
 	line := strings.Split(r.FormValue("asciitext"), "\\n")
-	//content := table
 	for i := 0; i < len(line); i++ {
 		if len(line[i]) > 0 {
 			chars := []rune(line[i])
@@ -35,13 +36,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 					adress := group * 9
 					charLine := table[adress+1+n]
 					result = append(result, charLine)
-					//fmt.Fprintf(w, charLine)
 				}
-				//fmt.Fprint(w, string(rune('\n')))
 				result = append(result, string(rune('\n')))
 			}
 		} else {
-			//fmt.Fprint(w, string(rune('\n')))
 			result = append(result, string(rune('\n')))
 		}
 	}
@@ -50,12 +48,11 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		sresult += result[i]
 	}
 
-	t, err := template.ParseFiles("./templates/" + "home.html")
+	t, err := template.ParseFiles("./templates/home.html")
 
 	if err != nil {
 		fmt.Println(err)
 	}
 	resFinal := ResultAscii{sresult}
 	t.Execute(w, resFinal)
-	fmt.Print(w, resFinal)
 }

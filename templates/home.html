@@ -20,13 +20,12 @@
 <body>
     <h1>ASCII GENERATOR</h1>
     <form action="/" method="POST">
-        <label><input name="asciitext" type="text" value="" />
+        <input name="asciitext" type="text" value="" />
             <div class="select">
-                <select>
-                  <option>Choisir une police</option>
-                  <option name="standard">Standard</option>
-                  <option name="thinkerboy">Thinkerboy</option>
-                  <option name="shadow">Shadow</option>
+                <select name="police">
+                  <option value="standard">Standard</option>
+                  <option value="thinkertoy">Thinkerboy</option>
+                  <option value="shadow">Shadow</option>
                 </select>
               </div>
         <input type="submit" value="Cliquez"/></label>
