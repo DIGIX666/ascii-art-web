@@ -47,12 +47,12 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	for i := range result {
 		sresult += result[i]
 	}
-
 	t, err := template.ParseFiles("./templates/home.html")
 
 	if err != nil {
 		fmt.Println(err)
 	}
+	sresult = strings.Replace(sresult, "\r", "\n", -1)
 	resFinal := ResultAscii{sresult}
 	t.Execute(w, resFinal)
 }
