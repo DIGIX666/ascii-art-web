@@ -14,6 +14,7 @@ type ResultAscii struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
+
 	namePolice := r.FormValue("police")
 	//fmt.Println(namePolice)
 	file, err := os.Open("assets/" + namePolice + ".txt")
@@ -27,9 +28,12 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	var result []string
 
 	line := strings.Split(r.FormValue("asciitext"), "\\n")
-	for i := 0; i < len(line); i++ {
-		if len(line[i]) > 0 {
-			chars := []rune(line[i])
+	strTemp := strings.Join(line, " ")
+	jump := strings.ReplaceAll(strTemp, string([]byte{0x0D, 0x0A}), "\n")
+	contentAll := strings.Split(jump, "\n")
+	for i := 0; i < len(contentAll); i++ {
+		if len(contentAll[i]) > 0 {
+			chars := []rune(contentAll[i])
 			for n := 0; n < 8; n++ {
 				for v := 0; v < len(chars); v++ {
 					group := int(chars[v]) - 32
@@ -52,7 +56,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	sresult = strings.Replace(sresult, "\r", "\n", -1)
 	resFinal := ResultAscii{sresult}
 	t.Execute(w, resFinal)
 }
