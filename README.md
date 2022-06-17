@@ -1,11 +1,11 @@
 ## **ASCII-ART-WEB**
 
 ## Port
-*In main.go change port, by default port its 8080*
+*If you want to change the port, go in the main.go*
 
     const port := ":XXXX"
-**Launch server :**
+## Launch server 
 ```go run .```
-Server executed on port 8080
+By default server executed on port 8080
 
 **Created by Thox66 & MahdiAbdessalem & Zakch**
