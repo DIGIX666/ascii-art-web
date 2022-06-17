@@ -1,7 +1,7 @@
 ## **ASCII-ART-WEB**
 
-## Change port
-*In main.go change const port, by default port its 8080*
+## Port
+*In main.go change port, by default port its 8080*
 
     const port := ":XXXX"
 **Launch server :**
