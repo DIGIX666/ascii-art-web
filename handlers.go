@@ -50,11 +50,14 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	} else {
 		textChecker := r.FormValue("asciitext")
 		for i := range textChecker {
+			if textChecker[i] == '\n' || textChecker[i] == '\r' {continue} 
 			if textChecker[i] < 32 || textChecker[i] > 127 {
 				fmt.Fprintf(w, "non")
+				// fmt.Println(int(textChecker[i]))
 				return
 			}
 		}
+	}
 		line := strings.Split(r.FormValue("asciitext"), "\\n")
 		strTemp := strings.Join(line, " ")
 		jump := strings.ReplaceAll(strTemp, string([]byte{0x0D, 0x0A}), "\n")
@@ -80,6 +83,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			sresult += result[i]
 		}
 		t, err := template.ParseFiles("./templates/home.html")
+		
 
 		if err != nil {
 			errorHandler(w, r, http.StatusInternalServerError)
@@ -88,4 +92,3 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		resFinal := ResultAscii{sresult}
 		t.Execute(w, resFinal)
 	}
-}
